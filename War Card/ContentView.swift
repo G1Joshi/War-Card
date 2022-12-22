@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var playerCard = "card12"
-    @State var botCard = "card13"
+    @State var backgroundImage = "background-plain"
+    @State var playerCard = "back"
+    @State var botCard = "back"
     @State var playerScore = 0
     @State var botScore = 0
 
     var body: some View {
         ZStack {
-            Image("background-plain").resizable().ignoresSafeArea()
+            Image(backgroundImage).resizable().ignoresSafeArea()
             VStack {
                 Spacer()
                 Image("logo")
@@ -56,6 +57,28 @@ struct ContentView: View {
                     Spacer()
                 }.foregroundColor(.white)
                 Spacer()
+                HStack {
+                    Button {
+                        backgroundImage = "background-plain"
+                    } label: {
+                        Image("background-plain").resizable().cornerRadius(20)
+                    }
+                    Button {
+                        backgroundImage = "background-cloth"
+                    } label: {
+                        Image("background-cloth").resizable().cornerRadius(20)
+                    }
+                    Button {
+                        backgroundImage = "background-wood-cartoon"
+                    } label: {
+                        Image("background-wood-cartoon").resizable().cornerRadius(20)
+                    }
+                    Button {
+                        backgroundImage = "background-wood-grain"
+                    } label: {
+                        Image("background-wood-grain").resizable().cornerRadius(20)
+                    }
+                }.frame(height: 100).padding(10).shadow(radius: 100)
             }
         }
     }
