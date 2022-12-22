@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var playerCard = "card12"
+    @State var botCard = "card13"
+    @State var playerScore = 0
+    @State var botScore = 0
+
     var body: some View {
         ZStack {
             Image("background-plain").resizable().ignoresSafeArea()
@@ -17,24 +22,36 @@ struct ContentView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    Image("card2")
+                    Image(playerCard)
                     Spacer()
-                    Image("card3")
+                    Image(botCard)
                     Spacer()
                 }
                 Spacer()
-                Image("button")
+                Button {
+                    let playerRand = Int.random(in: 2 ... 14)
+                    let botRand = Int.random(in: 2 ... 14)
+                    playerCard = "card\(playerRand)"
+                    botCard = "card\(botRand)"
+                    if playerRand > botRand {
+                        playerScore += 1
+                    } else if botRand > playerRand {
+                        botScore += 1
+                    }
+                } label: {
+                    Image("button")
+                }
                 Spacer()
                 HStack {
                     Spacer()
                     VStack {
                         Text("Player").font(.headline).padding(.bottom, 10)
-                        Text("0").font(.largeTitle)
+                        Text(String(playerScore)).font(.largeTitle)
                     }
                     Spacer()
                     VStack {
                         Text("Bot").font(.headline).padding(.bottom, 10)
-                        Text("0").font(.largeTitle)
+                        Text(String(botScore)).font(.largeTitle)
                     }
                     Spacer()
                 }.foregroundColor(.white)
